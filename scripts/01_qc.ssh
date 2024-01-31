@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --job-name=fastqc_job
+#SBATCH --output=01_fastqc_output.log
+#SBATCH --error=01_fastqc_error.log
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=1000M
+
+module add UHTS/Quality_control/fastqc/0.11.7
+
+# Change the directory to where your raw data is located
+cd /home/mvolosko/Ribosome_profiling/RawData
+
+fastqc -o /home/mvolosko/Ribosome_profiling/fastqc -f fastq *.fastq.gz
+
